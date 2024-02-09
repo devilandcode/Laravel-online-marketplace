@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Kernel;
+use Carbon\CarbonInterval;
 use Illuminate\Database\Connection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +16,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        if ($this->app->environment('local')) {
+            $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
+            $this->app->register(TelescopeServiceProvider::class);
+        }
     }
 
     /**
@@ -28,5 +33,13 @@ class AppServiceProvider extends ServiceProvider
         DB::whenQueryingForLongerThan(500, function(Connection $connection) {
             // TODO
         });
+
+        $kernel = app(Kernel::class);
+        $kernel->whenRequestLifecycleIsLongerThan(
+            CarbonInterval::seconds(4),
+            function() {
+
+            }
+        );
     }
 }

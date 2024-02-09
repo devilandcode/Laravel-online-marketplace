@@ -12,6 +12,10 @@ class Controller extends BaseController
 
     public function __invoke()
     {
+        logger()
+            ->channel('telegram')
+            ->debug('User invite home page');
+
         return view('welcome');
     }
 }
