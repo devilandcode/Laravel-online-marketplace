@@ -57,6 +57,6 @@
 		"npm": "^8.3.0"
 	},
 	"scripts": {
-		"tailwind": "npx tailwindcss -i ./app/sass/tailwind.css -o ./dist/css/tailwind.css --watch"
+		"tailwind": "npx tailwindcss -i ../sass/tailwind.css -o ./dist/css/tailwind.css --watch"
 	}
 }
