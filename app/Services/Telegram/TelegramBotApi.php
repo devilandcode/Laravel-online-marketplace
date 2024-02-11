@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services\Telegram;
 
+use App\Services\Telegram\Exceptions\TelegramBotApiException;
 use Http;
 
 final class TelegramBotApi
@@ -15,10 +16,12 @@ final class TelegramBotApi
             $response = HTTP::get(self::HOST . $token . '/sendMessage', [
                 'chat_id' => $chatId,
                 'text' => $text,
-            ]);
-            return ($response->status() === 200) ? true : false;
-        } catch (\Exception $e) {
-            logger()->warning('Message to telegram has refused: ' . $e->getMessage());
+            ])->throw();
+
+            return $response->ok() ?? false;
+        } catch (\Throwable $e) {
+            report(new TelegramBotApiException($e->getMessage()));
+
             return false;
         }
     }
