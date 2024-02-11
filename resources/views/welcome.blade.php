@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        @vite(['resources/css/app.css', 'resources/sass/main.sass', 'resources/js/app.js'])
-        <title>Marketplace</title>
-    </head>
-    <body class="antialiased">
+@extends('layouts.auth')
 
-    </body>
-</html>
+@section('content')
+    @auth
+        <form action="{{ route('logOut') }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Logout</button>
+        </form>
+    @endauth
+@endsection
