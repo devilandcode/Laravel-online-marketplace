@@ -10,16 +10,14 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ProductFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
             'title' => ucfirst(fake()->words(2, true)),
-            'thumbnail' => '',
+            'thumbnail' => fake()->file(
+                base_path('/tests/Fixtures/images/products'),
+                storage_path('/app/public/images/products')
+            ),
             'price' => fake()->numberBetween(1000, 10000),
             'brand_id' => Brand::query()->inRandomOrder()->value('id'),
         ];
