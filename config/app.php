@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\TestingServiceProvider;
 use App\Providers\ViewServiceProvider;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
@@ -171,7 +172,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
-        App\Providers\ViewServiceProvider::class,
+        ViewServiceProvider::class,
+        TestingServiceProvider::class,
     ])->toArray(),
 
     /*

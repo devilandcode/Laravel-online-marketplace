@@ -26,10 +26,10 @@ class AppServiceProvider extends ServiceProvider
         if (app()->isProduction()) {
 
             DB::listen(function($query) {
-                if ($query->time > 100) {
+                if ($query->time > 200) {
                     logger()
                         ->channel('telegram')
-                        ->debug('query longer than 100ms' .
+                        ->debug('query longer than 200ms' .
                             'Total time= ' . $query->time .
                             'Sql= ' . $query->sql, $query->bindings);
                 }
