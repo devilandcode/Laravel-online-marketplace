@@ -24,7 +24,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class AuthController extends Controller
 {
-    public function index(): View|Application|Factory|App
+    public function index(): View|Application|Factory|App|RedirectResponse
     {
         return view('auth.login');
     }
@@ -61,18 +61,10 @@ class AuthController extends Controller
 
         auth()->login($user);
 
-        if (!auth()->attempt($request->validated())) {
-            return back()->withErrors([
-                'email' => 'The provided credentials are incorrect',
-            ])->onlyInput('email');
-        }
-
         $request->session()->regenerate();
 
         return redirect()
             ->intended(route('home'));
-
-
     }
 
     public function logOut(): RedirectResponse
@@ -97,9 +89,13 @@ class AuthController extends Controller
             $request->only('email')
         );
 
-        return $status === Password::RESET_LINK_SENT
-            ? back()->with(['message' => __($status)])
-            : back()->withErrors(['email' => __($status)]);
+        if ($status === Password::RESET_LINK_SENT) {
+            flash()->alert(__($status));
+
+            return back();
+        }
+
+        return back()->withErrors(['email' => __($status)]);
     }
 
     public function reset(string $token): View|Application|Factory|App
@@ -123,10 +119,13 @@ class AuthController extends Controller
                 event(new PasswordReset($user));
             }
         );
+        if ($status === Password::PASSWORD_RESET) {
+            flash()->info(__($status));
 
-        return $status === Password::PASSWORD_RESET
-            ? redirect()->route('login')->with(['message' => __($status)])
-            : back()->withErrors(['email' => __($status)]);
+            return back();
+        }
+
+        return back()->withErrors(['email' => __($status)]);
     }
 
     public function github(): RedirectResponse

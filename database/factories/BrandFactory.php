@@ -14,7 +14,7 @@ class BrandFactory extends Factory
     {
         return [
             'title' => fake()->company(),
-            'thumbnail' => '',
+            'thumbnail' => $this->faker->fixturesImage('brands', 'brands'),
         ];
     }
 }

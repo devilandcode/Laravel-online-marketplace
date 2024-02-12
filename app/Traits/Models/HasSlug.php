@@ -10,18 +10,55 @@ trait HasSlug
 {
     protected static function bootHasSlug()
     {
-        // TODO  beauty unique slug
         static::creating(function (Model $item) {
-            $item->slug = $item->slug
-                ?? str($item->{self::slugFrom()})
-                    ->append(time())
-                    ->slug();
+            $item->makeSlug();
         });
     }
 
-    public static function slugFrom()
+    protected function makeSlug(): void
+    {
+        if (!$this->{$this->slugColumn()}) {
+            $slug = $this->slugUnique(
+                str($this->{$this->slugFrom()})
+                    ->slug()
+                    ->value()
+            );
+
+            $this->{$this->slugColumn()} = $slug;
+        }
+    }
+
+    protected function slugColumn(): string
+    {
+        return 'slug';
+    }
+
+    public function slugFrom()
     {
         return 'title';
     }
 
+    private function slugUnique(string $slug): string
+    {
+        $originSlug = $slug;
+        $i = 0;
+
+        while ($this->isSlugExist($slug)) {
+            $i++;
+
+            $slug = $originSlug . '-' . $i;
+        }
+
+        return $slug;
+    }
+
+    private function isSlugExist(string $slug): bool
+    {
+        $query = $this->newQuery()
+            ->where(self::slugColumn(), $slug)
+            ->where($this->getKeyName(), '!==', $this->getKey())
+            ->withoutGlobalScopes();
+
+        return $query->exists();
+    }
 }

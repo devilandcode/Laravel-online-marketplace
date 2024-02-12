@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
+use InvalidArgumentException;
 
 class RefreshCommand extends Command
 {
@@ -19,6 +22,7 @@ class RefreshCommand extends Command
             return self::FAILURE;
         }
         Storage::deleteDirectory('/images/products');
+        Storage::deleteDirectory('/images/brands');
 
         $this->call('migrate:fresh', [
             '--seed' => true

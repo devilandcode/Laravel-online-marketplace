@@ -2,14 +2,14 @@
 
 namespace App\Http\Requests;
 
+
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
+use Tests\RequestFactories\App\Http\Request\SignUpFormRequestFactory;
 
 class SignUpFormRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+    public static $factory = SignupFormRequestFactory::class;
     public function authorize(): bool
     {
         return auth()->guest();
