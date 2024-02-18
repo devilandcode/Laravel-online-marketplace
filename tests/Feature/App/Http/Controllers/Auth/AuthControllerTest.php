@@ -3,6 +3,7 @@
 namespace Tests\Feature\App\Http\Controllers\Auth;
 
 
+use App\Http\Controllers\AuthController;
 use App\Http\Requests\SignUpFormRequest;
 use App\Listeners\SendEmailNewUserListener;
 use App\Models\User;
@@ -34,7 +35,7 @@ class AuthControllerTest extends TestCase
             'password_confirmation' => '12345678'
         ]);
 
-        $response = $this->post(route('store'), $request);
+        $response = $this->post(action([AuthController::class, 'store']), $request);
 
         $response->assertRedirect();
 
