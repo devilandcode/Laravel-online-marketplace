@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Support\Testing;
+namespace Support\Testing;
 
 use Illuminate\Support\Facades\Storage;
 
