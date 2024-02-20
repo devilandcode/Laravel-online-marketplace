@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 use Tests\RequestFactories\App\Http\Request\SignUpFormRequestFactory;
