@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Telegram;
+namespace Services\Telegram;
 
-use App\Services\Telegram\Exceptions\TelegramBotApiException;
 use Http;
+use Services\Telegram\Exceptions\TelegramBotApiException;
 
 final class TelegramBotApi
 {

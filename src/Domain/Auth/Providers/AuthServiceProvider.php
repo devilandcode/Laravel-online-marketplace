@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Providers;
+namespace Domain\Auth\Providers;
 
-// use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -22,5 +21,12 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+    }
+
+    public function register(): void
+    {
+        $this->app->register(
+          ActionServiceProvider::class,
+        );
     }
 }
