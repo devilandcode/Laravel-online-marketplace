@@ -2,6 +2,8 @@
 
 namespace Support\ValueObjects;
 
+use Support\Traits\Makeable;
+
 class Price
 {
     use Makeable;
