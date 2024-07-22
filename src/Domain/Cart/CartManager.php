@@ -4,17 +4,17 @@
 namespace Domain\Cart;
 
 
-use Domain\Cart\Contracts\CartIdentityStorageContract;
 use Domain\Cart\Models\Cart;
-use Domain\Cart\Models\CartItem;
-use Domain\Cart\StorageIdentities\FakeIdentityStorage;
-use Domain\Product\Models\Product;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
 use Support\ValueObjects\Price;
+use Domain\Cart\Models\CartItem;
+use Domain\Product\Models\Product;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Domain\Cart\Contracts\CartIdentityStorageContract;
+use Domain\Cart\StorageIdentoties\FakeIdentityStorage;
 
 class CartManager
 {
