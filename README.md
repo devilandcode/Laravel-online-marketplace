@@ -25,7 +25,7 @@ php artisan app:install
 
 ### Make .env and env.testing from env.example
 
-### Also for development im using telescope (offical packages) and laraveldebugbar which u can find:
+### Also for development im using telescope (official package) and laraveldebugbar which u can find:
 
 ```
   github.com/barryvdh/laravel-debugbar
