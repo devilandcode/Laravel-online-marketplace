@@ -1,16 +1,16 @@
-<header class="header pt-6 xl:pt-12">
+<header class="pt-6 header xl:pt-12">
     <div class="container">
-        <div class="header-inner flex items-center justify-between lg:justify-start">
+        <div class="flex items-center justify-between header-inner lg:justify-start">
             <div class="header-logo shrink-0">
                 <a href="{{ route('home') }}" rel="home">
                     <img src="{{Vite::image('logo.svg')}}"
-                         class="w-[120px] xs:w-[148px] md:w-[201px] h-[30px] xs:h-[36px] md:h-[50px]" alt="CutCode">
+                         class="w-[120px] xs:w-[148px] md:w-[201px] h-[30px] xs:h-[36px] md:h-[50px]" alt="Devil">
                 </a>
             </div><!-- /.header-logo -->
-            <div class="header-menu grow hidden lg:flex items-center ml-8 mr-8 gap-8">
+            <div class="items-center hidden gap-8 ml-8 mr-8 header-menu grow lg:flex">
                 <form
                     action="{{ route('catalog') }}"
-                    class="hidden lg:flex gap-3">
+                    class="hidden gap-3 lg:flex">
                     <input
                         name="s"
                         value="{{ request('s') }}"
@@ -26,16 +26,16 @@
                 </form>
                 @include('shared.menu')
             </div><!-- /.header-menu -->
-            <div class="header-actions flex items-center gap-3 md:gap-5">
+            <div class="flex items-center gap-3 header-actions md:gap-5">
                 @auth
-                    <div x-data="{dropdownProfile: false}" class="profile relative">
+                    <div x-data="{dropdownProfile: false}" class="relative profile">
                         <button @click="dropdownProfile = ! dropdownProfile"
-                                class="flex items-center text-white hover:text-pink transition">
+                                class="flex items-center text-white transition hover:text-pink">
                             <span class="sr-only">Профиль</span>
-                            <img src="{{ auth()->user()->avatar }}" class="shrink-0 w-7 md:w-9 h-7 md:h-9 rounded-full"
+                            <img src="{{ auth()->user()->avatar }}" class="rounded-full shrink-0 w-7 md:w-9 h-7 md:h-9"
                                  alt="{{ auth()->user()->name }}">
-                            <span class="hidden md:block ml-2 font-medium">{{ auth()->user()->name }}</span>
-                            <svg class="shrink-0 w-3 h-3 ml-2" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                            <span class="hidden ml-2 font-medium md:block">{{ auth()->user()->name }}</span>
+                            <svg class="w-3 h-3 ml-2 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                  viewBox="0 0 30 16">
                                 <path fill-rule="evenodd"
                                       d="M27.536.72a2 2 0 0 1-.256 2.816l-12 10a2 2 0 0 1-2.56 0l-12-10A2 2 0 1 1 3.28.464L14 9.397 24.72.464a2 2 0 0 1 2.816.256Z"
@@ -53,18 +53,18 @@
                             x-transition:leave-end="opacity-0"
                             class="absolute z-50 top-0 -right-20 xs:-right-8 sm:right-0 w-[280px] sm:w-[300px] mt-14 p-4 rounded-lg shadow-xl bg-card"
                         >
-                            <h5 class="text-body text-xs">Мой профиль</h5>
+                            <h5 class="text-xs text-body">Мой профиль</h5>
                             <div class="flex items-center mt-3">
-                                <img src="{{ auth()->user()->avatar }}" class="w-11 h-11 rounded-full"
+                                <img src="{{ auth()->user()->avatar }}" class="rounded-full w-11 h-11"
                                      alt="{{ auth()->user()->name }}">
-                                <span class="ml-3 text-xs md:text-sm font-bold">{{ auth()->user()->name }}</span>
+                                <span class="ml-3 text-xs font-bold md:text-sm">{{ auth()->user()->name }}</span>
                             </div>
                             <div class="mt-4">
                                 <ul class="space-y-2">
-                                    <li><a href="#" class="text-body hover:text-white text-xs font-medium">Мои
+                                    <li><a href="#" class="text-xs font-medium text-body hover:text-white">Мои
                                             заказы</a></li>
                                     <li><a href="#"
-                                           class="text-body hover:text-white text-xs font-medium">Редактировать
+                                           class="text-xs font-medium text-body hover:text-white">Редактировать
                                             профиль</a></li>
                                 </ul>
                             </div>
@@ -73,7 +73,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="inline-flex items-center text-body hover:text-pink">
-                                        <svg class="shrink-0 w-5 h-5" xmlns="http://www.w3.org/2000/svg"
+                                        <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg"
                                              fill="currentColor"
                                              viewBox="0 0 20 20">
                                             <path
@@ -88,8 +88,8 @@
                         </div>
                     </div>
                 @elseguest
-                    <a href="{{ route('login') }}" class="profile hidden xs:flex items-center">
-                        <svg class="profile-icon w-8 h-8 text-purple" xmlns="http://www.w3.org/2000/svg"
+                    <a href="{{ route('login') }}" class="items-center hidden profile xs:flex">
+                        <svg class="w-8 h-8 profile-icon text-purple" xmlns="http://www.w3.org/2000/svg"
                              aria-hidden="true" role="img" width="1em"
                              height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32">
                             <defs/>
@@ -97,22 +97,22 @@
                                 d="M26.749 24.93A13.99 13.99 0 1 0 2 16a13.899 13.899 0 0 0 3.251 8.93l-.02.017c.07.084.15.156.222.239c.09.103.187.2.28.3c.28.304.568.596.87.87c.092.084.187.162.28.242c.32.276.649.538.99.782c.044.03.084.069.128.1v-.012a13.901 13.901 0 0 0 16 0v.012c.044-.031.083-.07.128-.1c.34-.245.67-.506.99-.782c.093-.08.188-.159.28-.242c.302-.275.59-.566.87-.87c.093-.1.189-.197.28-.3c.071-.083.152-.155.222-.24zM16 8a4.5 4.5 0 1 1-4.5 4.5A4.5 4.5 0 0 1 16 8zM8.007 24.93A4.996 4.996 0 0 1 13 20h6a4.996 4.996 0 0 1 4.993 4.93a11.94 11.94 0 0 1-15.986 0z"
                                 fill="currentColor"/>
                         </svg>
-                        <span class="profile-text relative ml-2 text-white text-xxs md:text-xs font-bold">Войти</span>
+                        <span class="relative ml-2 font-bold text-white profile-text text-xxs md:text-xs">Войти</span>
                     </a>
                 @endauth
                 <a href="{{ route('cart') }}" class="flex items-center gap-3 text-pink hover:text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 md:w-7 w-6 md:h-7" fill="currentColor"
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 md:w-7 md:h-7" fill="currentColor"
                          viewBox="0 0 52 52">
                         <path
                             d="M26 0a10.4 10.4 0 0 0-10.4 10.4v1.733h-1.439a5.668 5.668 0 0 0-5.668 5.408L7.124 46.055A5.685 5.685 0 0 0 12.792 52h26.416a5.686 5.686 0 0 0 5.668-5.945l-1.37-28.514a5.668 5.668 0 0 0-5.667-5.408H36.4V10.4A10.4 10.4 0 0 0 26 0Zm-6.933 10.4a6.934 6.934 0 0 1 13.866 0v1.733H19.067V10.4Zm-2.843 8.996a1.734 1.734 0 1 1 3.468 0 1.734 1.734 0 0 1-3.468 0Zm16.085 0a1.733 1.733 0 1 1 3.467 0 1.733 1.733 0 0 1-3.467 0Z"/>
                     </svg>
-                    <div class="hidden sm:flex flex-col gap-2">
-                        <span class="text-body text-xxs leading-none">{{ cart()->count() }} шт.</span>
+                    <div class="flex-col hidden gap-2 sm:flex">
+                        <span class="leading-none text-body text-xxs">{{ cart()->count() }} шт.</span>
                         <span
                             class="text-white text-xxs 2xl:text-xs font-bold !leading-none">{{ cart()->amount() }}</span>
                     </div>
                 </a>
-                <button id="burgerMenu" class="flex 2xl:hidden text-white hover:text-pink transition">
+                <button id="burgerMenu" class="flex text-white transition 2xl:hidden hover:text-pink">
                     <span class="sr-only">Меню</span>
                     <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                          stroke="currentColor" aria-hidden="true">
