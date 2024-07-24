@@ -29,7 +29,7 @@ class SocialAuthControllerTest extends TestCase
 
             $m->shouldReceive('getEmail')
                 ->once()
-                ->andReturn('sergey_bobkov@inbox.ru');
+                ->andReturn('testing@gmail.com');
         });
 
         Socialite::shouldReceive('driver->user')
